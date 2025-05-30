@@ -1,14 +1,33 @@
-# ZypernLifestyle PDF Microservice
+# PDF Generator Microservice
 
-Dieser Service generiert PDFs auf Basis von HTML-Templates und stellt eine API bereit.
+Dieser Service wandelt HTML in PDF um (Puppeteer, Docker, Coolify-ready).
 
-## Starten
+## Setup
 
-```bash
-docker-compose up --build
-```
+1. Abhängigkeiten installieren:
+   ```bash
+   npm install
+   ```
+2. Service lokal starten:
+   ```bash
+   docker compose up --build
+   ```
 
-## Umgebungsvariablen
-- SUPABASE_URL
-- SUPABASE_SERVICE_ROLE_KEY
-- API_KEY 
+## API
+
+### POST /generate-pdf
+- **Body:**
+  ```json
+  {
+    "html": "<h1>Hallo Welt</h1>",
+    "options": { "format": "A4" }
+  }
+  ```
+- **Antwort:** PDF (Content-Type: application/pdf)
+
+## Docker
+- Nutzt das offizielle Puppeteer-Image
+- Keine Volumes nötig
+
+## Deployment
+- Einfaches Git-Push & Coolify-Deploy 
